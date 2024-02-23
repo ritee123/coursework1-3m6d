@@ -53,7 +53,7 @@ def send(account_number,PIN,phone):
                 'token': 'v2_Rri05e6U3XkCcnmjeOnfxdDzAqz.dY9a',
                 'from': 'TheAlert',
                 'to': to_phone,
-                'text': f'Dear User, welcome to Kuber! Your PIN is {PIN}, and your saving account number is {account_number}. Please do not share your banking details with anyone.'
+                'text': f'Dear User, welcome to Kuber! your saving account number is {account_number}, and Your PIN is {PIN} . Please do not share your banking details with anyone.'
             }
         )
         print("R: ", r)
@@ -70,8 +70,9 @@ def create_new_user(WIN, name_entry, citizenship_entry, phone_entry, address_ent
     address = address_entry.get()
     email = email_entry.get()
     account_type = account_type_entry.get()
-    account_number = random.randint(10000, 99999)
     PIN = random.randint(10000, 99999)
+    account_number = random.randint(10000, 99999)
+    
     
     if addnewuser_validation(name_entry, citizenship_entry, phone_entry, address_entry, email_entry, account_type_entry):
         image_path = "images/img.png"
@@ -90,7 +91,7 @@ def create_new_user(WIN, name_entry, citizenship_entry, phone_entry, address_ent
         if "users" not in banking_system:
             banking_system["users"] = []   
 
-        new_data = [name, citizenship, phone, address, email, account_type ,account_number, PIN]
+        new_data = [name, citizenship, phone, address, email, account_type ,PIN,account_number]
         banking_system["users"].append(new_data)
 
         phone_data = {'phoneNumber': '+977' + phone}

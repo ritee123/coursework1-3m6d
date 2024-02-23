@@ -27,12 +27,12 @@ decoded_data = lsb.reveal(image_path)
 decoded_data = json.loads(decoded_data)
 new_data = decoded_data["users"]
 
-print("NAME | CITIZENSHIP | PHONE | ADDRESS | EMAIL | ACCOUNT TYPE | ACCOUNT NUMBER | ENCRYPTED PIN")
+print("NAME | CITIZENSHIP | PHONE | ADDRESS | EMAIL | ACCOUNT TYPE  | ACCOUNT NUMBER | PIN ")
 
 for i in new_data:
     # Encrypt the PIN
-    encrypted_pin = encrypt_message(str(i[7]), key)
-    print(i[0], i[1], i[2], i[3], i[4], i[5], i[6], encrypted_pin)
+    encrypted_pin = encrypt_message( str(i[7]), key)
+    print(i[0], i[1], i[2], i[3], i[4], i[5], i[6], key)
 
 # Example of decrypting a PIN (replace 'encrypted_pin' with an actual encrypted PIN from your output)
 # decrypted_pin = decrypt_message(encrypted_pin, key)
