@@ -33,8 +33,6 @@ def adminlogin_validate(WIN,username_value, password_value):
 
 def adminlogin():
     WIN = Tk()
-    logo_image = PhotoImage(file="images/fish2.png")
-    WIN.iconphoto(False, logo_image)
     WIN.title('Online Banking System')
     WIN.geometry('360x640')
     tfont_tup = ("Comic Sans MS", 15)  # Define the font
@@ -80,14 +78,10 @@ def adminlogin():
 
 
     def on_enter_adminlogin_button(e):
-        '''Changed Background and Foreground of Register Button named register_button
-        to #ABBC41 and white respectively when function is called.'''
         adminlogin_button.config(background='#7409EB',foreground= "Black")
 
     # Created a Function named on_leave_register_button with 'e' as one parameter
     def on_leave_adminlogin_button(e):
-        '''Changed Background and Foreground of Register Button named register_button to
-        pink and black respectively when function is called.'''
         adminlogin_button.config(background= '#645394', foreground= 'white')
 
     adminlogin_button.bind('<Enter>',on_enter_adminlogin_button)

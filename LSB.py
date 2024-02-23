@@ -22,7 +22,7 @@ def decrypt_message(encrypted_message, key):
 # Generate an encryption key (you should save this securely!)
 key = generate_key()
 
-image_path = "images/profileimg.png"
+image_path = "images/img.png"
 decoded_data = lsb.reveal(image_path)
 decoded_data = json.loads(decoded_data)
 new_data = decoded_data["users"]

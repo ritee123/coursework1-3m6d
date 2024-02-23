@@ -7,13 +7,11 @@ import requests
 from tkinter import ttk 
 
 def dashboard_call(WIN):
-    '''Destroys the tkinter window and call open function i.e. login function from a admin page'''
     WIN.destroy()
     from admin_dashboard import homepage
     homepage()
 
 def is_valid_email(email):
-    # Regular expression for validating an email
     pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     return re.match(pattern, email) is not None
 
@@ -25,7 +23,6 @@ def addnewuser_validation(name_entry, citizenship_entry, phone_entry, address_en
     print("Account Type:", account_type_entry.get())
     print("Email:", email_entry.get())
 
-    # Validation logic for the user inputs including account type
     if (
         len(name_entry.get()) != 0 and isinstance(name_entry.get(), str) and
         len(citizenship_entry.get()) != 0 and citizenship_entry.get().isdigit() and
@@ -50,15 +47,13 @@ def addnewuser_validation(name_entry, citizenship_entry, phone_entry, address_en
 def send(account_number,PIN,phone):
     try:
         to_phone = phone['phoneNumber']
-        # Call an api and send parameter to it
         r = requests.get(
             "http://api.sparrowsms.com/v2/sms/",
             params={
                 'token': 'v2_Rri05e6U3XkCcnmjeOnfxdDzAqz.dY9a',
                 'from': 'TheAlert',
                 'to': to_phone,
-                'text': f'Dear User, welcome to Kuber! Your PIN is {PIN}, and your saving account number is {account_number}.
-                 Please do not share your banking details with anyone.'
+                'text': f'Dear User, welcome to Kuber! Your PIN is {PIN}, and your saving account number is {account_number}. Please do not share your banking details with anyone.'
             }
         )
         print("R: ", r)
@@ -69,7 +64,6 @@ def send(account_number,PIN,phone):
         print(f"Error sending message: {str(e)}")    
 
 def create_new_user(WIN, name_entry, citizenship_entry, phone_entry, address_entry, email_entry, account_type_entry):
-    # Extracting the data from the entry fields
     name = name_entry.get()
     citizenship = citizenship_entry.get()
     phone = phone_entry.get()
@@ -80,7 +74,7 @@ def create_new_user(WIN, name_entry, citizenship_entry, phone_entry, address_ent
     PIN = random.randint(10000, 99999)
     
     if addnewuser_validation(name_entry, citizenship_entry, phone_entry, address_entry, email_entry, account_type_entry):
-        image_path = "images/profileimg.png"
+        image_path = "images/img.png"
         print("Image Path:", image_path)  
         decoded_data = ""
         try:
@@ -96,20 +90,16 @@ def create_new_user(WIN, name_entry, citizenship_entry, phone_entry, address_ent
         if "users" not in banking_system:
             banking_system["users"] = []   
 
-        # Adding the new user data
         new_data = [name, citizenship, phone, address, email, account_type ,account_number, PIN]
         banking_system["users"].append(new_data)
 
         phone_data = {'phoneNumber': '+977' + phone}
         send(PIN,account_number,phone_data)
         json_data = json.dumps(banking_system)
-        # Encode the JSON data into the image using least significant bit (LSB) method
         encoded_image = lsb.hide(image_path, json_data)
-        # Save the output image
         encoded_image.save(image_path)
         confirm_account_creation(WIN)
     else:
-        # If data is not valid, display an error message
         title = "Error"
         message = "Recheck Your Input\n Values"
         from errors import error as show_error
@@ -170,8 +160,6 @@ def return_adminhomepage(WIN):
 def add_new_user():
     print("********************* Add New User Page *** Opens Here *********************")
     WIN = Tk()
-    logo_image = PhotoImage(file="images/fish2.png")
-    WIN.iconphoto(False, logo_image)
     WIN.title('Online Banking System')
     WIN.geometry('360x640')
    
@@ -188,8 +176,6 @@ def add_new_user():
 
     def temp_name(e):
         name_entry.delete(0, "end")
-
-    # Entry Box to take name Input from user
     name_entry = Entry(WIN, font=("Comic Sans MS", 15), justify="center", width=18, foreground="#AFAFAF")
     name_entry.insert(0, "Full Name")
     name_entry.bind("<FocusIn>",temp_name)
@@ -239,14 +225,13 @@ def add_new_user():
         '''Clears account_type_entry to take user input'''
         account_type_entry.delete(0, "end")
 
-    # Define the options for account type
-    account_types = ['Saving Account', 'Checking Account']  # Add more account types as needed
+  
+    account_types = ['Saving Account', 'Checking Account'] 
     account_type_entry = ttk.Combobox(WIN, values=account_types, font=("Comic Sans MS", 14), justify="center", width=18, foreground="#AFAFAF")
-    account_type_entry.set('Select Account Type')  # Default placeholder text
+    account_type_entry.set('Select Account Type') 
 
     account_type_entry.place(relx=0.5, rely=0.8, anchor=CENTER)  
     
-    # created a add_new_voter Button which calls add_new_voter_page function when pressed
     add_new_user_button = Button(WIN,text="Add User",padx=13,borderwidth=0,
                                  font=("Comic Sans MS", 14),background= '#645394', 
                                  foreground= 'white',

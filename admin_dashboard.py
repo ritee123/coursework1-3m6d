@@ -15,8 +15,6 @@ def dashboard_call(WIN):
 
 def homepage():
     WIN = Tk()
-    logo_image = PhotoImage(file="images/fish2.png")
-    WIN.iconphoto(False, logo_image)
     WIN.title('Online Banking System')
     WIN.geometry('360x640')
 
@@ -27,7 +25,7 @@ def homepage():
     canvas.create_image(0, 0, image=bg_img, anchor='nw')
     canvas.create_text(105, 445, text="Total Users", fill="white", font=("Comic Sans MS", 12))
 
-    image_path = "images/profileimg.png"
+    image_path = "images/img.png"
     decoded_data = lsb.reveal(image_path)
     decoded_data = json.loads(decoded_data)
     detailedlist = decoded_data['users']
@@ -73,8 +71,6 @@ def homepage():
 
     def on_enter_detail_users(e):
         detail_users.config(background='#7409EB',foreground= "white")
-
-    # Created a Function named on_leave_view_voter with 'e' as one parameter
     def on_leave_detail_users(e):
         detail_users.config(background= '#645394', foreground= 'white')
 
@@ -96,7 +92,7 @@ def homepage():
     user_list.bind('<Leave>',on_leave_user_list)
 
 
-    #Updates all Into TKinter Window
+
     WIN.mainloop()
 
 #calls homepage Function

@@ -41,7 +41,7 @@ def create_new_user(WIN, name_entry, citizenship_entry, phone_entry, address_ent
         
         # Call the necessary functions
         json_data = '{"users":[]}'
-        encoded_image = lsb.hide("images/profileimg.png", json_data)
+        encoded_image = lsb.hide("images/img.png", json_data)
         confirm_account_creation(WIN)
         send(PIN, account_number, {'phoneNumber': '+977' + phone})
     else:

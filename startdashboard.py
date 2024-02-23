@@ -2,7 +2,6 @@ from tkinter import *
 
 
 def dashboard():
-    # Create a Tkinter Window
     WIN = Tk()
     WIN.title('Online Banking System')
     WIN.geometry('360x640')
@@ -18,15 +17,12 @@ def dashboard():
     label_background = Label(WIN, image=background, borderwidth=0)
     label_background.place(x=0, y=0)
 
-    # Function to handle mouse entering the button
     def on_enter_get_started(e):
         get_started_button.config(background='#7409EB')
 
-    # Function to handle mouse leaving the button
     def on_leave_get_started(e):
         get_started_button.config(background='#645394')
 
-    # Function to proceed to the user page
     def user_page():
         WIN.destroy()
         from Login_as_user import userlogin
