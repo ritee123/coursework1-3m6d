@@ -7,7 +7,6 @@ def dashboard():
     WIN.geometry('360x640')
     
     def admin_page():
-        '''Destroys the tkinter window and call open function i.e. login function from a admin page'''
         WIN.destroy()
         from dashboard import dashboard
         dashboard()
